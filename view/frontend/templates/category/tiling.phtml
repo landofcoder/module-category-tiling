@@ -28,6 +28,8 @@ declare(strict_types=1);
 
 use Lof\CategoryTiling\Block\Category\View;
 
+$imageAttrTemplate = 'height="%1" width="%2"';
+
 ?>
 <?php if ($block->showTiling()): ?>
     <?php $helper = $block->getOutputHelper(); ?>
@@ -40,7 +42,7 @@ use Lof\CategoryTiling\Block\Category\View;
                             <?php if ($imgUrl = $subcategory->getImageUrl()): ?>
                                 <a href="<?= $subcategory->getUrl() ?>" class="category photo category-item-photo">
                                 <span class="category-image-container">
-                                    <?php $imgHtml = '<img src="' . $imgUrl . '" />'; ?>
+                                    <?php $imgHtml = '<img src="' . $imgUrl . '" alt="'.$subcategory->getName().'"/>'; ?>
                                     <?php echo $imgHtml = $helper->categoryAttribute($subcategory, $imgHtml, 'image'); ?>
                                 </span>
                                 </a>

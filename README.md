@@ -2,11 +2,14 @@
 
 This will show any subcategories as tiles on the frontend;
 
+[Frontend Category Page](./assets/img/frontend_parent_category.png)
 
 # Usage
-
 The extension will add tiling display options to categories' 'Display Mode' for showing sub-categories as tiles;
 
+[Config Category Display Mode](./assets/img/category_config_layout_1.png)
+
+[Config Sub Categories will Show](./assets/img/category_config_show_sub_categories_by_id.png)
 
 # Installation
 

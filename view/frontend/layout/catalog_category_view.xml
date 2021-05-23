@@ -28,7 +28,7 @@
     </head>
     <body>
         <referenceContainer name="columns.top">
-            <referenceBlock name="category.cms">
+            <referenceBlock name="category.cms" ifconfig="lof_categorytiling/general/enabled" >
                 <action method="setTemplate">
                     <argument name="template" xsi:type="string">Lof_CategoryTiling::category/cms.phtml</argument>
                 </action>
@@ -36,8 +36,9 @@
         </referenceContainer>
         <referenceContainer name="content">
             <block class="Magento\Catalog\Block\Category\View" name="category.tiling"
+                    ifconfig="lof_categorytiling/general/enabled" 
                    template="Lof_CategoryTiling::category/tiling.phtml" before="category.products"/>
-            <referenceBlock name="category.products">
+            <referenceBlock name="category.products" ifconfig="lof_categorytiling/general/enabled" >
                 <action method="setTemplate">
                     <argument name="template" xsi:type="string">Lof_CategoryTiling::category/products.phtml</argument>
                 </action>
