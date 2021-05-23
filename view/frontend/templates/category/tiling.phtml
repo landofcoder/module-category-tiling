@@ -1,0 +1,60 @@
+<?php
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/terms
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_CategoryTiling
+ * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
+ */
+declare(strict_types=1);
+
+/**
+ * Category view template
+ *
+ * @var $block View
+ */
+
+use Lof\CategoryTiling\Block\Category\View;
+
+?>
+<?php if ($block->showTiling()): ?>
+    <?php $helper = $block->getOutputHelper(); ?>
+    <?php if ($subcategories = $block->getSubcategories()): ?>
+        <div class="categories wrapper grid categories-grid">
+            <ol class="categories list items category-items">
+                <?php foreach ($subcategories as $subcategory): ?>
+                    <li class="item category category-item">
+                        <div class="category-item-info">
+                            <?php if ($imgUrl = $subcategory->getImageUrl()): ?>
+                                <a href="<?= $subcategory->getUrl() ?>" class="category photo category-item-photo">
+                                <span class="category-image-container">
+                                    <?php $imgHtml = '<img src="' . $imgUrl . '" />'; ?>
+                                    <?php echo $imgHtml = $helper->categoryAttribute($subcategory, $imgHtml, 'image'); ?>
+                                </span>
+                                </a>
+                            <?php endif; ?>
+                            <div class="category details category-item-details">
+                                <strong class="category name category-item-name">
+                                    <a class="category-item-link"
+                                       href="<?= $subcategory->getUrl() ?>"><?= $subcategory->getName() ?></a>
+                                </strong>
+                            </div>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            </ol>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>
