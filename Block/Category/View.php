@@ -158,10 +158,30 @@ class View extends \Magento\Catalog\Block\Category\View
             return null;
         }
 
-        $collection = $this->collectionFactory->create()
-            ->addAttributeToSelect(['name', 'image', 'image_url', 'url'])
-            ->addAttributeToFilter('entity_id', ['in' => $allCategoryIds]);
+        $sortAttribute = $this->getSortAttribute();
 
+        $collection = $this->collectionFactory->create()
+            ->addAttributeToSelect(['name', 'image', 'image_url', 'url', 'url_key', 'url_path'])
+            ->addAttributeToFilter('entity_id', ['in' => $allCategoryIds])
+            ->addIsActiveFilter();
+
+        if($sortAttribute == "position") {
+            $collection->addAttributeToSort('level');
+        }
+        if($sortAttribute){
+            $collection->addAttributeToSort($sortAttribute);
+        }
         return $collection;
     }
+
+    /**
+     * Get the sort attribute
+     *
+     * @return string|null
+     * @throws LocalizedException
+     */
+    public function getSortAttribute(): string
+    {
+        return "position";
+    } 
 }

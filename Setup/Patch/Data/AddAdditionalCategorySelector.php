@@ -84,6 +84,21 @@ class AddAdditionalCategorySelector implements DataPatchInterface
                 'group' => 'General Information',
             ]
         );
+
+        $eavSetup->addAttribute(
+            Category::ENTITY,
+            'category_thumbnail',
+            [
+                'type' => 'varchar',
+                'label' => 'Thumbnail',
+                'input' => 'image',
+                'required' => false,
+                'sort_order' => 5,
+                'backend' => 'Magento\Catalog\Model\Category\Attribute\Backend\Image',
+                'global' => ScopedAttributeInterface::SCOPE_STORE,
+                'group' => 'General Information',
+            ]
+        );
     }
 
     /**
