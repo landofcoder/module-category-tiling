@@ -27,9 +27,10 @@ declare(strict_types=1);
  */
 
 use Lof\CategoryTiling\Block\Category\View;
-
 $imageAttrTemplate = 'height="%1" width="%2"';
-
+$width = $block->getConfig("general/image_width");
+$height = $block->getConfig("general/image_height");
+$categoryImageAttr = str_replace(["%1", "%2"], [$width, $height], $imageAttrTemplate);
 ?>
 <?php if ($block->showTiling()): ?>
     <?php $helper = $block->getOutputHelper(); ?>
@@ -42,7 +43,7 @@ $imageAttrTemplate = 'height="%1" width="%2"';
                             <?php if ($imgUrl = $subcategory->getImageUrl()): ?>
                                 <a href="<?= $subcategory->getUrl() ?>" class="category photo category-item-photo">
                                 <span class="category-image-container">
-                                    <?php $imgHtml = '<img src="' . $imgUrl . '" alt="'.$subcategory->getName().'"/>'; ?>
+                                    <?php $imgHtml = '<img src="' . $imgUrl . '" alt="'.$subcategory->getName().'" '.$categoryImageAttr.'/>'; ?>
                                     <?php echo $imgHtml = $helper->categoryAttribute($subcategory, $imgHtml, 'image'); ?>
                                 </span>
                                 </a>

@@ -47,6 +47,11 @@ class View extends \Magento\Catalog\Block\Category\View
     private $collectionFactory;
 
     /**
+     * @var \Lof\CategoryTiling\Helper\Data $helperData
+     */
+    protected $helperData;
+
+    /**
      * View constructor.
      *
      * @param Context           $context
@@ -55,6 +60,7 @@ class View extends \Magento\Catalog\Block\Category\View
      * @param CategoryHelper    $categoryHelper
      * @param Output            $outputHelper
      * @param CollectionFactory $collectionFactory
+     * @param \Lof\CategoryTiling\Helper\Data $helperData
      * @param array             $data
      */
     public function __construct(
@@ -64,11 +70,13 @@ class View extends \Magento\Catalog\Block\Category\View
         CategoryHelper $categoryHelper,
         Output $outputHelper,
         CollectionFactory $collectionFactory,
+        \Lof\CategoryTiling\Helper\Data $helperData,
         array $data = []
     ) {
         parent::__construct($context, $layerResolver, $registry, $categoryHelper, $data);
         $this->outputHelper      = $outputHelper;
         $this->collectionFactory = $collectionFactory;
+        $this->helperData = $helperData;
     }
 
     /**
@@ -184,4 +192,8 @@ class View extends \Magento\Catalog\Block\Category\View
     {
         return "position";
     } 
+    
+    public function getConfig($key, $store = null) {
+        return $this->helperData->getConfig($key, $store);
+    }
 }
